@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import * as actions from '../../actions/actionCreator';
 import { useDispatch } from "react-redux";
+import { addTask } from '../../actions/actionCreator';
 import './task-add-form.css';
 
 
@@ -29,7 +29,7 @@ const TaskAddForm = () => {
 
   const handleTaskSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(actions.addTask({
+    dispatch(addTask({
       id: (new Date()).getTime(),
       taskText: isTaskText,
       userName: isUserName,
@@ -44,8 +44,7 @@ const TaskAddForm = () => {
 
   return (
     <form
-      className='d-flex mt-4'
-      onClick={handleTaskSubmit}>
+      className='d-flex mt-4'>
       <input
         className='form-control me-1'
         type='text'
@@ -69,7 +68,8 @@ const TaskAddForm = () => {
       />
       <button
         className='btn btn-outline-secondary'
-        type='submit'>
+        type='submit'
+        onClick={handleTaskSubmit}>
         Add
       </button>
     </form>

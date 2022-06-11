@@ -36,4 +36,20 @@ export const initialState = [
   }
 ];
 
+export const FILTERS_BTN = [
+  {
+    text: 'All',
+    id: 'all',
+  },
+  {
+    text: 'Active',
+    id: 'active',
+  },
+  {
+    text: 'Completed',
+    id: 'completed'
+  }
+];
+
 export const ADD_TASK = 'ADD_TASK';
+export const CHANGE_FILTER = 'CHANGE_FILTER';

@@ -1,7 +1,17 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { changeFilter } from '../../actions/actionCreator';
+import { FILTERS_BTN } from '../../utils/constants'
 import './task-status-filter.css';
 
 const TaskStatusFilter = () => {
+
+  const dispatch = useDispatch();
+
+  const handleChangeFilter = (activeFilter) => {
+    dispatch(changeFilter(activeFilter));
+  }
+
   return (
     <>
       <div className="input-group me-2">
@@ -13,21 +23,13 @@ const TaskStatusFilter = () => {
         <input type="text" className="form-control"></input>
       </div>
       <div className='btn-group'>
-        <button
-          type='button'
-          className='btn btn-outline-secondary'>
-          All
-        </button>
-        <button
-          type='button'
-          className='btn btn-outline-secondary'>
-          Active
-        </button>
-        <button
-          type='button'
-          className='btn btn-outline-secondary'>
-          Complited
-        </button>
+        {FILTERS_BTN.map(({ text, id }) => (
+          <button
+            onClick={() => { handleChangeFilter(id) }}
+            key={id}
+            className='btn btn-outline-secondary'
+          >{text}</button>
+        ))}
       </div>
     </>
   )

@@ -1,5 +1,7 @@
+import { ADD_TASK, CHANGE_FILTER } from "../utils/constants";
+
 export const addTask = ({ id, taskText, userName, userEmail, isCompleted }) => ({
-  type: 'ADD_TASK',
+  type: ADD_TASK,
   id,
   taskText,
   userName,
@@ -7,3 +9,7 @@ export const addTask = ({ id, taskText, userName, userEmail, isCompleted }) => (
   isCompleted
 });
 
+export const changeFilter = activeFilter => ({
+  type: CHANGE_FILTER,
+  activeFilter
+})

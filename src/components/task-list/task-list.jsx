@@ -1,11 +1,8 @@
 import React from 'react';
-import PostListItem from '../task-list-item/taskListItem.jsx';
-import { useSelector } from "react-redux";
+import TaskListItem from '../task-list-item/taskListItem.jsx';
 import './task-list.css';
 
-const PostList = () => {
-
-  let tasks = [...useSelector(state => state.tasks)].reverse();
+const TaskList = ({ tasks }) => {
 
   const elements = tasks.map((item) => {
 
@@ -13,7 +10,7 @@ const PostList = () => {
 
     return (
       <li key={id} className='list-group-item mt-2 pt-2 pb-2 pe-2'>
-        <PostListItem {...itemProps} />
+        <TaskListItem {...itemProps} />
       </li>
     )
   });
@@ -25,4 +22,4 @@ const PostList = () => {
   )
 }
 
-export default PostList;
+export default TaskList;
