@@ -9,7 +9,7 @@ const TaskList = ({ tasks }) => {
     const { id, ...itemProps } = item;
 
     return (
-      <li key={id} className='list-group-item mt-2 pt-2 pb-2 pe-2'>
+      <li key={id} className='list-group-item mt-2 pt-2 pb-2 pe-4'>
         <TaskListItem {...itemProps} />
       </li>
     )

@@ -48,30 +48,30 @@ const TaskAddForm = () => {
 
   return (
     <form
-      className='d-flex mt-4'>
+      className='d-flex flex-wrap flex-md-nowrap mt-4'>
       <input
-        className='form-control me-1'
+        className='form-control me-md-2 mt-1 mt-md-0'
         type='text'
         placeholder='Task'
         value={isTaskText}
         onChange={handleTaskTextChange}
       />
       <input
-        className='form-control me-1'
+        className='form-control me-md-2 mt-1 mt-md-0'
         type='text'
         placeholder='Name'
         value={isUserName}
         onChange={handleUserNameChange}
       />
       <input
-        className='form-control me-1'
+        className='form-control me-md-3 mt-1 mt-md-0'
         type='text'
         placeholder='E-mail'
         value={isUserEmail}
         onChange={handleUserEmailChange}
       />
       <button
-        className='btn btn-secondary'
+        className='btn btn-secondary mt-2 mt-md-0'
         type='submit'
         onClick={handleTaskSubmit}>
         Add

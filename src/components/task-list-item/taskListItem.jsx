@@ -4,13 +4,13 @@ import './taskListItem.css';
 const PostListItem = ({ taskText, userName, userEmail, isCompleted }) => {
 
   return (
-    <div className='d-flex justify-content-between align-items-center'>
-      <span>{taskText}</span>
-      <span>{userName}</span>
-      <span>{userEmail}</span>
-      <small className={`px-2 py-1 fw-semibold bg-opacity-10 border  border-opacity-10 rounded-2
+    <div className='row d-flex align-items-center'>
+      <span className='col-12 col-md-5'>{taskText}</span>
+      <span className='col-6 col-sm-5 col-md-3 mt-2 mt-sm-0'>{userName}</span>
+      <span className='col-6 col-sm-5 col-md-3 mt-2 mt-sm-0'>{userEmail}</span>
+      <small className={`offset-9 col-3 offset-sm-0 col-sm-2 col-md-1 mt-3 mt-sm-0 px-2 py-1 fw-semibold bg-opacity-10 border  border-opacity-10 rounded-2 text-center
       ${isCompleted ? 'text-success bg-success border-success' : 'text-warning bg-warning border-warning'}`}>
-        {isCompleted ? 'Complited' : 'Active'}
+        {isCompleted ? 'Done' : 'Active'}
       </small>
     </div>
   )

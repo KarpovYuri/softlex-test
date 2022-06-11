@@ -29,8 +29,8 @@ const TaskStatusFilter = () => {
 
 
   return (
-    <>
-      <div className='input-group me-2'>
+    <div className='d-flex justify-content-center flex-wrap flex-md-nowrap'>
+      <div className='input-group me-md-3'>
         <input
           type='text'
           className='form-control'
@@ -44,7 +44,7 @@ const TaskStatusFilter = () => {
           Name
         </button>
       </div>
-      <div className='input-group me-2'>
+      <div className='input-group me-md-4 mt-2 mt-md-0'>
         <input
           type='text'
           className='form-control'
@@ -58,7 +58,7 @@ const TaskStatusFilter = () => {
           E-mail
         </button>
       </div>
-      <div className='btn-group'>
+      <div className='btn-group  mt-2 mt-md-0'>
         {FILTERS_BTN.map(({ text, activeFilter }) => (
           <button
             onClick={() => { handleChangeFilter({ activeFilter, filterValue: '' }) }}
@@ -67,7 +67,7 @@ const TaskStatusFilter = () => {
           >{text}</button>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

@@ -20,6 +20,12 @@ const PaginationPanel = () => {
           <a className="page-link text-secondary" href="#">3</a>
         </li>
         <li className="page-item">
+          <a className="page-link text-secondary" href="#">4</a>
+        </li>
+        <li className="page-item">
+          <a className="page-link text-secondary" href="#">5</a>
+        </li>
+        <li className="page-item">
           <a className="page-link text-secondary" href="#">
             <i className="fa-solid fa-angle-right"></i>
           </a>
