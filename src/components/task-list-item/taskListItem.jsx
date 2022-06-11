@@ -1,15 +1,16 @@
 import React from 'react';
 import './taskListItem.css';
 
-const PostListItem = ({ task, user, email }) => {
+const PostListItem = ({ taskText, userName, userEmail, isCompleted }) => {
 
   return (
     <div className='d-flex justify-content-between align-items-center'>
-      <span>{task}</span>
-      <span>{user}</span>
-      <span>{email}</span>
-      <small className='px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2'>
-        Done
+      <span>{taskText}</span>
+      <span>{userName}</span>
+      <span>{userEmail}</span>
+      <small className={`px-2 py-1 fw-semibold bg-opacity-10 border  border-opacity-10 rounded-2
+      ${isCompleted ? 'text-success bg-success border-success' : 'text-warning bg-warning border-warning'}`}>
+        {isCompleted ? 'Complited' : 'Active'}
       </small>
     </div>
   )

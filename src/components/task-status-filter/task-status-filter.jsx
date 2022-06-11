@@ -16,17 +16,17 @@ const TaskStatusFilter = () => {
         <button
           type='button'
           className='btn btn-outline-secondary'>
-          None
-        </button>
-        <button
-          type='button'
-          className='btn btn-outline-secondary'>
           All
         </button>
         <button
           type='button'
           className='btn btn-outline-secondary'>
-          Done
+          Active
+        </button>
+        <button
+          type='button'
+          className='btn btn-outline-secondary'>
+          Complited
         </button>
       </div>
     </>
