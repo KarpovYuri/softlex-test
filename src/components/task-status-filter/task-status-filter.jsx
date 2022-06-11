@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { changeFilter } from '../../actions/actionCreator';
 import { FILTERS_BTN } from '../../utils/constants'
@@ -6,27 +6,63 @@ import './task-status-filter.css';
 
 const TaskStatusFilter = () => {
 
+  const [isUserName, setIsUserName] = useState('');
+  const [isUserEmail, setIsUserEmail] = useState('');
   const dispatch = useDispatch();
+
+
+  const handleUserNameChange = (evt) => {
+    setIsUserName(evt.target.value);
+  }
+
+
+  const handleUserEmailChange = (evt) => {
+    setIsUserEmail(evt.target.value);
+  }
+
 
   const handleChangeFilter = (activeFilter) => {
     dispatch(changeFilter(activeFilter));
+    setIsUserName('');
+    setIsUserEmail('');
   }
+
 
   return (
     <>
-      <div className="input-group me-2">
-        <div className="input-group-text">Name</div>
-        <input type="text" className="form-control"></input>
+      <div className='input-group me-2'>
+        <input
+          type='text'
+          className='form-control'
+          placeholder='Filter by name'
+          value={isUserName}
+          onChange={handleUserNameChange}>
+        </input>
+        <button
+          className='btn btn-secondary input-group-btn'
+          onClick={() => { handleChangeFilter({ activeFilter: 'name', filterValue: isUserName }) }}>
+          Name
+        </button>
       </div>
-      <div className="input-group me-2">
-        <div className="input-group-text">E-mail</div>
-        <input type="text" className="form-control"></input>
+      <div className='input-group me-2'>
+        <input
+          type='text'
+          className='form-control'
+          placeholder='Filter by email'
+          value={isUserEmail}
+          onChange={handleUserEmailChange}>
+        </input>
+        <button
+          className='btn btn-secondary input-group-btn'
+          onClick={() => { handleChangeFilter({ activeFilter: 'email', filterValue: isUserEmail }) }}>
+          E-mail
+        </button>
       </div>
       <div className='btn-group'>
-        {FILTERS_BTN.map(({ text, id }) => (
+        {FILTERS_BTN.map(({ text, activeFilter }) => (
           <button
-            onClick={() => { handleChangeFilter(id) }}
-            key={id}
+            onClick={() => { handleChangeFilter({ activeFilter, filterValue: '' }) }}
+            key={activeFilter}
             className='btn btn-outline-secondary'
           >{text}</button>
         ))}

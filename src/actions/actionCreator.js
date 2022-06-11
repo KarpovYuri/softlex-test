@@ -9,7 +9,8 @@ export const addTask = ({ id, taskText, userName, userEmail, isCompleted }) => (
   isCompleted
 });
 
-export const changeFilter = activeFilter => ({
+export const changeFilter = ({ activeFilter, filterValue }) => ({
   type: CHANGE_FILTER,
-  activeFilter
+  activeFilter,
+  filterValue
 })

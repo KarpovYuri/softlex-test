@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addTask } from '../../actions/actionCreator';
+import { addTask, changeFilter } from '../../actions/actionCreator';
 import './task-add-form.css';
 
 
@@ -36,6 +36,10 @@ const TaskAddForm = () => {
       userEmail: isUserEmail,
       isCompleted: false
     }));
+    dispatch(changeFilter({
+      id: 'all',
+      filterValue: ''
+    }));
     setIsTaskText('');
     setIsUserName('');
     setIsUserEmail('');
@@ -67,7 +71,7 @@ const TaskAddForm = () => {
         onChange={handleUserEmailChange}
       />
       <button
-        className='btn btn-outline-secondary'
+        className='btn btn-secondary'
         type='submit'
         onClick={handleTaskSubmit}>
         Add

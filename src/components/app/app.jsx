@@ -14,12 +14,16 @@ const App = () => {
   const numberTasks = tasks.length;
   const numberCompletedTasks = tasks.filter(task => task.isCompleted).length;
 
-  const filterTasks = (tasks, activeFilter) => {
+  const filterTasks = (tasks, { activeFilter, filterValue }) => {
     switch (activeFilter) {
       case 'completed':
         return tasks.filter(task => task.isCompleted);
       case 'active':
         return tasks.filter(task => !task.isCompleted);
+      case 'name':
+        return tasks.filter(task => task.userName === filterValue);
+      case 'email':
+        return tasks.filter(task => task.userEmail === filterValue);
       default:
         return tasks;
     }

@@ -2,8 +2,8 @@ export const initialState = [
   {
     id: 1,
     taskText: 'Изучить HTML',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
+    userName: 'Василий',
+    userEmail: 'vasily@test.ru',
     isCompleted: true
   },
   {
@@ -16,20 +16,55 @@ export const initialState = [
   {
     id: 3,
     taskText: 'Изучить JavaScript',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
+    userName: 'Петр',
+    userEmail: 'petr@test.ru',
     isCompleted: true
   },
   {
     id: 4,
     taskText: 'Изучить Reaact',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
+    userName: 'Василий',
+    userEmail: 'vasily@test.ru',
     isCompleted: true
   },
   {
     id: 5,
     taskText: 'Изучить Redux',
+    userName: 'Юрий',
+    userEmail: 'yurick@test.ru',
+    isCompleted: false
+  },
+  {
+    id: 6,
+    taskText: 'Изучить HTML-2',
+    userName: 'Василий',
+    userEmail: 'vasily@test.ru',
+    isCompleted: true
+  },
+  {
+    id: 7,
+    taskText: 'Изучить CSS-2',
+    userName: 'Юрий',
+    userEmail: 'yurick@test.ru',
+    isCompleted: false
+  },
+  {
+    id: 8,
+    taskText: 'Изучить JavaScript-2',
+    userName: 'Петр',
+    userEmail: 'petr@test.ru',
+    isCompleted: true
+  },
+  {
+    id: 9,
+    taskText: 'Изучить Reaact-2',
+    userName: 'Василий',
+    userEmail: 'vasily@test.ru',
+    isCompleted: false
+  },
+  {
+    id: 10,
+    taskText: 'Изучить Redux-2',
     userName: 'Юрий',
     userEmail: 'yurick@test.ru',
     isCompleted: false
@@ -39,15 +74,15 @@ export const initialState = [
 export const FILTERS_BTN = [
   {
     text: 'All',
-    id: 'all',
+    activeFilter: 'all',
   },
   {
     text: 'Active',
-    id: 'active',
+    activeFilter: 'active',
   },
   {
     text: 'Completed',
-    id: 'completed'
+    activeFilter: 'completed'
   }
 ];
 
