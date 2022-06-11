@@ -11,6 +11,8 @@ const App = () => {
 
   const filters = useSelector(state => state.filters);
   const tasks = [...useSelector(state => state.addTasks)].reverse();
+  const numberTasks = tasks.length;
+  const numberCompletedTasks = tasks.filter(task => task.isCompleted).length;
 
   const filterTasks = (tasks, activeFilter) => {
     switch (activeFilter) {
@@ -25,10 +27,11 @@ const App = () => {
 
   const filteredTasks = filterTasks(tasks, filters);
 
-
   return (
     <div className='mx-auto app'>
-      <AppHeader />
+      <AppHeader
+        numberTasks={numberTasks}
+        numberCompletedTasks={numberCompletedTasks} />
       <div className='d-flex'>
         <TaskStatusFilter />
       </div>
