@@ -18,7 +18,6 @@ const App = () => {
   const startTask = curentPage * perPage;
 
 
-  // Получаем задачи
   const filters = useSelector(state => state.filters);
   const tasks = [...useSelector(state => state.addTasks)].reverse();
   const numberTasks = tasks.length;
@@ -27,6 +26,18 @@ const App = () => {
 
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState('');
+
+
+  const [isTasks, setIsTasks] = useState([]);
+
+
+  // Получение задач с сервера
+  api.getInitialTasks()
+    .then(initialTasks => {
+      setIsTasks(initialTasks.message.tasks);
+    })
+    .catch(error => console.log(error));
+
 
 
   // Обработка задач в соответствии с фильтром
@@ -103,6 +114,11 @@ const App = () => {
       .then(data => console.log(data))
       .catch(error => console.log(error))
   }
+
+  //Редактирование задачи на сервере
+  // api.editTask()
+  //   .then(data => console.log(data))
+  //   .catch(error => console.log(error))
 
 
   return (
