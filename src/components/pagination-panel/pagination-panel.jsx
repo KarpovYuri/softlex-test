@@ -2,43 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { showPage } from '../../actions/actionCreator';
 import ReactPaginate from 'react-paginate';
-import styled from 'styled-components';
 import './pagination-panel.css';
-
-const MyPaginate = styled(ReactPaginate).attrs({ activeClassName: 'active', })`
-margin-top: 2rem;
-  margin-bottom: 5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style-type: none;
-  padding: 0 10rem;
-  li a {
-    border-radius: 5px;
-    padding: 0.1rem 1rem;
-    border: gray 1px solid;
-    cursor: pointer;
-  }
-  li.previous a,
-  li.next a,
-  li.break a {
-    border-color: transparent;
-  }
-  li.active a {
-    background-color: #0366d6;
-    border-color: transparent;
-    color: white;
-    min-width: 32px;
-  }
-  li.disabled a {
-    color: grey;
-  }
-  li.disable,
-  li.disabled a {
-    cursor: default;
-  }
-`;
-
 
 const PaginationPanel = ({ pageCount, currentPage }) => {
 
@@ -49,11 +13,26 @@ const PaginationPanel = ({ pageCount, currentPage }) => {
   }
 
   return (
-    <MyPaginate
-      pageCount={pageCount}
-      onPageChange={handleChangePage}
-      forcePage={currentPage}
-    />
+    <nav aria-label="Панель пагинации">
+      <ReactPaginate
+        previousLabel='<'
+        nextLabel='>'
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link text-secondary shadow-none"
+        pageCount={pageCount}
+        onPageChange={handleChangePage}
+        containerClassName="pagination justify-content-center mt-4"
+        pageClassName="page-item"
+        pageLinkClassName="page-link text-secondary shadow-none"
+        previousClassName="page-item"
+        previousLinkClassName="page-link text-secondary shadow-none"
+        nextClassName="page-item"
+        nextLinkClassName="page-link text-secondary shadow-none"
+        activeClassName="active"
+        forcePage={currentPage}
+      />
+    </nav>
   )
 }
 
