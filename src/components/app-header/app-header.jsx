@@ -1,8 +1,7 @@
 import React from 'react';
 import './app-header.css';
 
-const AppHeader = ({ numberTasks, numberCompletedTasks, onOpenLoginForm }) => {
-
+const AppHeader = ({ numberTasks, numberCompletedTasks, onOpenLoginForm, isLoggedIn, onLogout }) => {
 
   return (
     <div className='d-flex flex-wrap flex-sm-nowrap justify-content-between align-items-end mb-3'>
@@ -11,9 +10,9 @@ const AppHeader = ({ numberTasks, numberCompletedTasks, onOpenLoginForm }) => {
         <a
           href="#"
           className='text-decoration-none fw-bold text-dark hover'
-          onClick={onOpenLoginForm}
+          onClick={isLoggedIn ? onLogout : onOpenLoginForm}
         >
-          Login
+          {isLoggedIn ? 'logout' : 'login'}
         </a>
         <p className='text-secondary mb-0'>Tasks: {numberTasks}, Completed: {numberCompletedTasks}</p>
       </div>

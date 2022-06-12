@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useEscClose from '../../hooks/useEscClose';
 import './loginPopup.css'
 
@@ -6,14 +6,40 @@ function LoginPopup(
   {
     isOpen,
     onClose,
-    onSubmit,
-    inputNameError,
-    inputPasswordError
+    onLogin
   }
 ) {
 
 
+  // Закрытие по Esc
   useEscClose(isOpen, onClose);
+
+
+  // Стейты формы
+  const [isUserName, setIsUserName] = useState('');
+  const [isPassword, setIsPassword] = useState('');
+
+
+  // Установка имени пользователя
+  function handleChangeUserName(event) {
+    setIsUserName(event.target.value);
+  }
+
+
+  // Установка пароля
+  function handleChangePasword(event) {
+    setIsPassword(event.target.value);
+  }
+
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onLogin(isUserName, isPassword)
+      .then(() => {
+        setIsUserName('');
+        setIsPassword('');
+      });
+  }
 
 
   return (
@@ -23,32 +49,33 @@ function LoginPopup(
         <h2 className="popup__title">Login</h2>
         <form
           className="popup__form"
-          onSubmit={onSubmit}
           name='loginForm'
-          noValidate
+          onSubmit={handleSubmit}
         >
           <input
+            value={isUserName || ''}
+            onChange={handleChangeUserName}
             type="text"
-            placeholder="Имя"
+            placeholder="UserName"
             className='popup__field'
-            id="nameInput"
-            name="name"
+            name="username"
             autoComplete="off"
+            required
+            minLength={2}
           />
-          <span className='popup__input-error'>
-            {inputNameError}
-          </span>
+          <span className='popup__input-error'></span>
           <input
-            type="text"
-            placeholder="О себе"
+            value={isPassword || ''}
+            onChange={handleChangePasword}
+            type="password"
+            placeholder="Password"
             className='popup__field'
-            id="aboutInput"
-            name="about"
+            name="password"
             autoComplete="off"
+            required
+            minLength={2}
           />
-          <span className='popup__input-error'>
-            {inputPasswordError}
-          </span>
+          <span className='popup__input-error'></span>
           <button
             type="submit"
             aria-label={`Кнопка входа`}

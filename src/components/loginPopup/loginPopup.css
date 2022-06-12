@@ -82,11 +82,12 @@
   font-size: 18px;
   line-height: 18px;
   font-weight: normal;
+  opacity: .75;
   transition: opacity 0.25s;
 }
 
 .popup__submit-button:hover {
-  opacity: .8;
+  opacity: .9;
 }
 
 @media (max-width: 633px) {
