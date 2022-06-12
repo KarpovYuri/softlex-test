@@ -32,12 +32,12 @@ class Api {
 
 
   // Добавление задачи
-  addTask({ username, email, text }) {
+  addTask(username, email, text) {
 
     let form = new FormData();
     form.append('username', username);
-    form.append('email', email);
-    form.append('text', text);
+    form.append('password', email);
+    form.append('password', text);
 
     return fetch(`${this._baseUrl}/create/?developer=Karpov`, {
       method: 'POST',

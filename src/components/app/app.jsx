@@ -37,9 +37,9 @@ const App = () => {
       case 'active':
         return tasks.filter(task => !task.isCompleted);
       case 'name':
-        return tasks.filter(task => task.userName === filterValue);
+        return tasks.filter(task => task.username === filterValue);
       case 'email':
-        return tasks.filter(task => task.userEmail === filterValue);
+        return tasks.filter(task => task.email === filterValue);
       default:
         return tasks;
     }
@@ -80,7 +80,7 @@ const App = () => {
             localStorage.setItem('jwt', data.message.token);
             closePopup();
             resolve();
-          } else { console.log(data.message) }
+          } else console.log(data.message);
 
         })
         .catch(error => {
@@ -96,6 +96,15 @@ const App = () => {
     setIsLoggedIn(false);
   }
 
+
+  // Добавление задачи на сервер
+  function handleAddTask(data) {
+    api.loginUser(data)
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+  }
+
+
   return (
     <>
       <div className='mx-auto app'>
@@ -109,7 +118,7 @@ const App = () => {
         <div className='d-flex'>
           <TaskStatusFilter />
         </div>
-        <TaskAddForm />
+        <TaskAddForm onAddTask={handleAddTask} />
         <TaskList tasks={displayedTasks} />
         <PaginationPanel
           pageCount={pageCount}

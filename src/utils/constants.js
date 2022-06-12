@@ -4,7 +4,7 @@ export const initialState = [
     taskText: 'Изучить HTML',
     userName: 'Василий',
     userEmail: 'vasily@test.ru',
-    isCompleted: true
+    isCompleted: 10
   },
   {
     id: 2,
@@ -18,14 +18,14 @@ export const initialState = [
     taskText: 'Изучить JavaScript',
     userName: 'Петр',
     userEmail: 'petr@test.ru',
-    isCompleted: true
+    isCompleted: 10
   },
   {
     id: 4,
     taskText: 'Изучить Reaact',
     userName: 'Василий',
     userEmail: 'vasily@test.ru',
-    isCompleted: true
+    isCompleted: 10
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const initialState = [
     taskText: 'Изучить HTML-2',
     userName: 'Василий',
     userEmail: 'vasily@test.ru',
-    isCompleted: true
+    isCompleted: 10
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const initialState = [
     taskText: 'Изучить JavaScript-2',
     userName: 'Петр',
     userEmail: 'petr@test.ru',
-    isCompleted: true
+    isCompleted: 10
   },
   {
     id: 9,

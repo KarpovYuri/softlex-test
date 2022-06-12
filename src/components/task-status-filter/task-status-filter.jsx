@@ -37,25 +37,29 @@ const TaskStatusFilter = () => {
           className='form-control shadow-none'
           placeholder='Filter by name'
           value={isUserName}
-          onChange={handleUserNameChange}>
+          onChange={handleUserNameChange}
+        >
         </input>
         <button
           className='btn btn-secondary input-group-btn shadow-none'
-          onClick={() => { handleChangeFilter({ activeFilter: 'name', filterValue: isUserName }) }}>
+          onClick={() => { handleChangeFilter({ activeFilter: 'name', filterValue: isUserName }) }}
+        >
           Name
         </button>
       </div>
       <div className='input-group me-md-4 mt-2 mt-md-0'>
         <input
-          type='text'
+          type='email'
           className='form-control shadow-none'
           placeholder='Filter by email'
           value={isUserEmail}
-          onChange={handleUserEmailChange}>
+          onChange={handleUserEmailChange}
+        >
         </input>
         <button
           className='btn btn-secondary input-group-btn shadow-none'
-          onClick={() => { handleChangeFilter({ activeFilter: 'email', filterValue: isUserEmail }) }}>
+          onClick={() => { handleChangeFilter({ activeFilter: 'email', filterValue: isUserEmail }) }}
+        >
           E-mail
         </button>
       </div>

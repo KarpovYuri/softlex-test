@@ -4,7 +4,7 @@ import { addTask, changeFilter } from '../../actions/actionCreator';
 import './task-add-form.css';
 
 
-const TaskAddForm = () => {
+const TaskAddForm = ({ onAddTask }) => {
 
   const [isTaskText, setIsTaskText] = useState('');
   const [isUserName, setIsUserName] = useState('');
@@ -29,12 +29,17 @@ const TaskAddForm = () => {
 
   const handleTaskSubmit = (evt) => {
     evt.preventDefault();
+    //onAddTask({
+    // text: isTaskText,
+    // username: isUserName,
+    // email: isUserEmail
+    //})
     dispatch(addTask({
       id: (new Date()).getTime(),
       taskText: isTaskText,
       userName: isUserName,
       userEmail: isUserEmail,
-      isCompleted: false
+      isCompleted: 0
     }));
     dispatch(changeFilter({
       id: 'all',
@@ -49,38 +54,43 @@ const TaskAddForm = () => {
   return (
     <form
       className='d-flex flex-wrap flex-md-nowrap mt-4'
-      name='addForm'>
+      name='addForm'
+      onSubmit={handleTaskSubmit}>
       <input
+        value={isTaskText || ''}
         className='form-control shadow-none me-md-2 mt-1 mt-md-0'
         type='text'
         placeholder='Task'
-        value={isTaskText}
+        name="tasktext"
         onChange={handleTaskTextChange}
+        autoComplete="off"
         required
         minLength={2}
       />
       <input
+        value={isUserName || ''}
         className='form-control shadow-none me-md-2 mt-1 mt-md-0'
         type='text'
         placeholder='Name'
-        value={isUserName}
+        name="username"
         onChange={handleUserNameChange}
+        autoComplete="off"
         required
         minLength={2}
       />
       <input
+        value={isUserEmail || ''}
         className='form-control shadow-none me-md-3 mt-1 mt-md-0'
-        type='text'
+        type='email'
         placeholder='E-mail'
-        value={isUserEmail}
+        name="email"
         onChange={handleUserEmailChange}
+        autoComplete="off"
         required
-        minLength={2}
       />
       <button
         className='btn btn-secondary shadow-none mt-2 mt-md-0'
-        type="submit"
-        onClick={handleTaskSubmit}>
+        type="submit">
         Add
       </button>
     </form>

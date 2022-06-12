@@ -78,7 +78,7 @@ function LoginPopup(
           <span className='popup__input-error'></span>
           <button
             type="submit"
-            aria-label={`Кнопка входа`}
+            aria-label='Кнопка входа'
             className='popup__submit-button'
           >
             Login
