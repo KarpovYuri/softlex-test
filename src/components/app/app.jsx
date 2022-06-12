@@ -9,12 +9,15 @@ import './app.css';
 
 const App = () => {
 
+  const perPage = 3;
+  const curentPage = useSelector(state => state.showPage).activePage;
+  const startTask = curentPage * perPage;
   const filters = useSelector(state => state.filters);
   const tasks = [...useSelector(state => state.addTasks)].reverse();
   const numberTasks = tasks.length;
   const numberCompletedTasks = tasks.filter(task => task.isCompleted).length;
 
-  const filterTasks = (tasks, { activeFilter, filterValue }) => {
+  function filterTasks(tasks, { activeFilter, filterValue }) {
     switch (activeFilter) {
       case 'completed':
         return tasks.filter(task => task.isCompleted);
@@ -30,6 +33,9 @@ const App = () => {
   }
 
   const filteredTasks = filterTasks(tasks, filters);
+  const displayedTasks = filteredTasks.slice(startTask, startTask + perPage);
+  const pageCount = Math.ceil(filteredTasks.length / perPage);
+
 
   return (
     <div className='mx-auto app'>
@@ -40,8 +46,10 @@ const App = () => {
         <TaskStatusFilter />
       </div>
       <TaskAddForm />
-      <TaskList tasks={filteredTasks} />
-      <PaginationPanel />
+      <TaskList tasks={displayedTasks} />
+      <PaginationPanel
+        pageCount={pageCount}
+        currentPage={curentPage} />
     </div>
   );
 }

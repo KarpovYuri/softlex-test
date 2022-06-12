@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { changeFilter } from '../../actions/actionCreator';
+import { changeFilter, showPage } from '../../actions/actionCreator';
 import { FILTERS_BTN } from '../../utils/constants'
 import './task-status-filter.css';
 
@@ -23,6 +23,7 @@ const TaskStatusFilter = () => {
 
   const handleChangeFilter = (activeFilter) => {
     dispatch(changeFilter(activeFilter));
+    dispatch(showPage({ activePage: 0 }));
     setIsUserName('');
     setIsUserEmail('');
   }

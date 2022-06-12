@@ -88,3 +88,4 @@ export const FILTERS_BTN = [
 
 export const ADD_TASK = 'ADD_TASK';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const SHOW_PAGE = 'SHOW_PAGE';

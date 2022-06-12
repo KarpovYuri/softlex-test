@@ -1,37 +1,59 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { showPage } from '../../actions/actionCreator';
+import ReactPaginate from 'react-paginate';
+import styled from 'styled-components';
 import './pagination-panel.css';
 
-const PaginationPanel = () => {
+const MyPaginate = styled(ReactPaginate).attrs({ activeClassName: 'active', })`
+margin-top: 2rem;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0 10rem;
+  li a {
+    border-radius: 5px;
+    padding: 0.1rem 1rem;
+    border: gray 1px solid;
+    cursor: pointer;
+  }
+  li.previous a,
+  li.next a,
+  li.break a {
+    border-color: transparent;
+  }
+  li.active a {
+    background-color: #0366d6;
+    border-color: transparent;
+    color: white;
+    min-width: 32px;
+  }
+  li.disabled a {
+    color: grey;
+  }
+  li.disable,
+  li.disabled a {
+    cursor: default;
+  }
+`;
+
+
+const PaginationPanel = ({ pageCount, currentPage }) => {
+
+  const dispatch = useDispatch();
+
+  const handleChangePage = (data) => {
+    dispatch(showPage({ activePage: data.selected }));
+  }
+
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="pagination d-flex justify-content-center mt-4">
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">
-            <i className="fa-solid fa-angle-left"></i>
-          </a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">1</a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">2</a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">3</a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">4</a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">5</a>
-        </li>
-        <li className="page-item">
-          <a className="page-link text-secondary" href="#">
-            <i className="fa-solid fa-angle-right"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <MyPaginate
+      pageCount={pageCount}
+      onPageChange={handleChangePage}
+      forcePage={currentPage}
+    />
   )
 }
 
