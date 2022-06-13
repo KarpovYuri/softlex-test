@@ -20,72 +20,72 @@ export const SHOW_PAGE = 'SHOW_PAGE';
 export const initialState = [
   {
     id: 1,
-    taskText: 'Изучить HTML',
-    userName: 'Василий',
-    userEmail: 'vasily@test.ru',
-    isCompleted: 10
+    text: 'Изучить HTML',
+    username: 'Василий',
+    email: 'vasily@test.ru',
+    status: 10
   },
   {
     id: 2,
-    taskText: 'Изучить CSS',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
-    isCompleted: false
+    text: 'Изучить CSS',
+    username: 'Юрий',
+    email: 'yurick@test.ru',
+    status: false
   },
   {
     id: 3,
-    taskText: 'Изучить JavaScript',
-    userName: 'Петр',
-    userEmail: 'petr@test.ru',
-    isCompleted: 10
+    text: 'Изучить JavaScript',
+    username: 'Петр',
+    email: 'petr@test.ru',
+    status: 10
   },
   {
     id: 4,
-    taskText: 'Изучить Reaact',
-    userName: 'Василий',
-    userEmail: 'vasily@test.ru',
-    isCompleted: 10
+    text: 'Изучить Reaact',
+    username: 'Василий',
+    email: 'vasily@test.ru',
+    status: 10
   },
   {
     id: 5,
-    taskText: 'Изучить Redux',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
-    isCompleted: false
+    text: 'Изучить Redux',
+    username: 'Юрий',
+    email: 'yurick@test.ru',
+    status: false
   },
   {
     id: 6,
-    taskText: 'Изучить HTML-2',
-    userName: 'Василий',
-    userEmail: 'vasily@test.ru',
-    isCompleted: 10
+    text: 'Изучить HTML-2',
+    username: 'Василий',
+    email: 'vasily@test.ru',
+    status: 10
   },
   {
     id: 7,
-    taskText: 'Изучить CSS-2',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
-    isCompleted: false
+    text: 'Изучить CSS-2',
+    username: 'Юрий',
+    email: 'yurick@test.ru',
+    status: false
   },
   {
     id: 8,
-    taskText: 'Изучить JavaScript-2',
-    userName: 'Петр',
-    userEmail: 'petr@test.ru',
-    isCompleted: 10
+    text: 'Изучить JavaScript-2',
+    username: 'Петр',
+    email: 'petr@test.ru',
+    status: 10
   },
   {
     id: 9,
-    taskText: 'Изучить Reaact-2',
-    userName: 'Василий',
-    userEmail: 'vasily@test.ru',
-    isCompleted: false
+    text: 'Изучить Reaact-2',
+    username: 'Василий',
+    email: 'vasily@test.ru',
+    status: false
   },
   {
     id: 10,
-    taskText: 'Изучить Redux-2',
-    userName: 'Юрий',
-    userEmail: 'yurick@test.ru',
-    isCompleted: false
+    text: 'Изучить Redux-2',
+    username: 'Юрий',
+    email: 'yurick@test.ru',
+    status: false
   }
 ];

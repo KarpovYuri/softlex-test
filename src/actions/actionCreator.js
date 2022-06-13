@@ -1,12 +1,12 @@
 import { ADD_TASK, CHANGE_FILTER, SHOW_PAGE } from "../utils/constants";
 
-export const addTask = ({ id, taskText, userName, userEmail, isCompleted }) => ({
+export const addTask = ({ id, text, username, email, status }) => ({
   type: ADD_TASK,
   id,
-  taskText,
-  userName,
-  userEmail,
-  isCompleted
+  text,
+  username,
+  email,
+  status
 });
 
 export const changeFilter = ({ activeFilter, filterValue }) => ({

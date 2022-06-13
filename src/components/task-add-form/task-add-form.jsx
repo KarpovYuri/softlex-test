@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { addTask, changeFilter } from '../../actions/actionCreator';
-import api from '../../utils/api';
 import './task-add-form.css';
 
 
@@ -37,10 +36,10 @@ const TaskAddForm = ({ onAddTask }) => {
     // })
     dispatch(addTask({
       id: (new Date()).getTime(),
-      taskText: isTaskText,
-      userName: isUserName,
-      userEmail: isUserEmail,
-      isCompleted: 0
+      text: isTaskText,
+      username: isUserName,
+      email: isUserEmail,
+      status: 0
     }));
     dispatch(changeFilter({
       id: 'all',

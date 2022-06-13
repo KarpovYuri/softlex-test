@@ -21,7 +21,9 @@ const App = () => {
   const filters = useSelector(state => state.filters);
   const tasks = [...useSelector(state => state.addTasks)].reverse();
   const numberTasks = tasks.length;
-  const numberCompletedTasks = tasks.filter(task => task.isCompleted).length;
+  const numberCompletedTasks = tasks.filter(task => {
+    if (task.status === 10 || task.status === 11) return task
+  }).length;
 
 
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
@@ -32,11 +34,11 @@ const App = () => {
 
 
   // Получение задач с сервера
-  api.getInitialTasks()
-    .then(initialTasks => {
-      setIsTasks(initialTasks.message.tasks);
-    })
-    .catch(error => console.log(error));
+  // api.getInitialTasks()
+  //   .then(initialTasks => {
+  //     setIsTasks(initialTasks.message.tasks);
+  //   })
+  //   .catch(error => console.log(error));
 
 
 
@@ -44,9 +46,13 @@ const App = () => {
   function filterTasks(tasks, { activeFilter, filterValue }) {
     switch (activeFilter) {
       case 'completed':
-        return tasks.filter(task => task.isCompleted);
+        return tasks.filter(task => {
+          if (task.status === 10 && task.status !== 11) return task
+        });
       case 'active':
-        return tasks.filter(task => !task.isCompleted);
+        return tasks.filter(task => {
+          if (task.status !== 10 && task.status !== 11) return task
+        });
       case 'name':
         return tasks.filter(task => task.username === filterValue);
       case 'email':
@@ -109,11 +115,11 @@ const App = () => {
 
 
   // Добавление задачи на сервер
-  function handleAddTask(data) {
-    api.loginUser(data)
-      .then(data => console.log(data))
-      .catch(error => console.log(error))
-  }
+  // function handleAddTask(data) {
+  //   api.loginUser(data)
+  //     .then(data => console.log(data))
+  //     .catch(error => console.log(error))
+  // }
 
   //Редактирование задачи на сервере
   // api.editTask()
@@ -134,7 +140,7 @@ const App = () => {
         <div className='d-flex'>
           <TaskStatusFilter />
         </div>
-        <TaskAddForm onAddTask={handleAddTask} />
+        <TaskAddForm /*onAddTask={handleAddTask}*/ />
         <TaskList tasks={displayedTasks} />
         <PaginationPanel
           pageCount={pageCount}
