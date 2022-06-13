@@ -34,13 +34,13 @@ const TaskAddForm = ({ onAddTask }) => {
     //   username: isUserName,
     //   email: isUserEmail
     // })
-    dispatch(addTask({
-      id: (new Date()).getTime(),
-      text: isTaskText,
-      username: isUserName,
-      email: isUserEmail,
-      status: 0
-    }));
+    // dispatch(addTask({
+    //   id: (new Date()).getTime(),
+    //   text: isTaskText,
+    //   username: isUserName,
+    //   email: isUserEmail,
+    //   status: 0
+    // }));
     dispatch(changeFilter({
       id: 'all',
       filterValue: ''

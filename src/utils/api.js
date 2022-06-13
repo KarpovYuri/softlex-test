@@ -16,6 +16,15 @@ class Api {
   }
 
 
+  // Получение задач с сервера
+  getInitialTasks(page) {
+    return fetch(`${this._baseUrl}/?developer=Example&page=${page}`, {
+      method: 'GET'
+    })
+      .then(res => this._handlingResponse(res));
+  }
+
+
   // Вход пользователя
   loginUser(username, password) {
 
@@ -42,15 +51,6 @@ class Api {
     return fetch(`${this._baseUrl}/create/?developer=Example`, {
       method: 'POST',
       body: form
-    })
-      .then(res => this._handlingResponse(res));
-  }
-
-
-  // Получение задач с сервера
-  getInitialTasks() {
-    return fetch(`${this._baseUrl}/?developer=Example`, {
-      method: 'GET'
     })
       .then(res => this._handlingResponse(res));
   }
