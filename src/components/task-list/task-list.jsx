@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskListItem from '../task-list-item/taskListItem.jsx';
+import TaskListItem from '../task-list-item/task-list-item.jsx';
 import './task-list.css';
 
 const TaskList = ({ tasks }) => {

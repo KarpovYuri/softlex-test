@@ -6,6 +6,8 @@ import './pagination-panel.css';
 
 const PaginationPanel = ({ pageCount, currentPage }) => {
 
+  pageCount = Math.ceil(pageCount);
+
   const dispatch = useDispatch();
 
   const handleChangePage = (data) => {
@@ -30,7 +32,7 @@ const PaginationPanel = ({ pageCount, currentPage }) => {
         nextClassName="page-item"
         nextLinkClassName="page-link text-secondary shadow-none"
         activeClassName="active"
-        forcePage={currentPage}
+      /*forcePage={currentPage}*/
       />
     </nav>
   )

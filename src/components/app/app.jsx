@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AppHeader from '../app-header/app-header.jsx';
 import PaginationPanel from '../pagination-panel/pagination-panel.jsx'
 import TaskStatusFilter from '../task-status-filter/task-status-filter.jsx';
 import TaskList from '../task-list/task-list.jsx';
 import TaskAddForm from '../task-add-form/task-add-form.jsx';
-import LoginPopup from '../loginPopup/loginPopup.jsx';
+import LoginPopup from '../login-popup/login-popup.jsx';
 import api from '../../utils/api';
+import { logIn } from '../../actions/actionCreator'
 import './app.css';
 
 
@@ -14,29 +15,25 @@ const App = () => {
 
   const [isTasks, setIsTasks] = useState([]);
   const [isPageCount, setIsPageCount] = useState([]);
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const curentPage = useSelector(state => state.showPage).activePage;
+  const dispatch = useDispatch();
+
 
   // Получение задач с сервера
   useEffect(() => {
-    api.getInitialTasks(curentPage + 1)
+    api.getInitialTasks(curentPage)
       .then(Tasks => {
-        setIsPageCount(Math.ceil(Tasks.message.total_task_count / 3));
+        setIsPageCount(Tasks.message.total_task_count / 3);
         setIsTasks(Tasks.message.tasks);
       })
       .catch(error => console.log(error));
   }, [curentPage]);
 
 
+
   //const filters = useSelector(state => state.filters);
   //const tasks = [...useSelector(state => state.addTasks)].reverse();
-  //const numberTasks = tasks.length;
-  //const numberCompletedTasks = tasks.filter(task => {
-  //if (task.status === 10 || task.status === 11) return task
-  //}).length;
-
-
-  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState('');
 
 
   // Обработка задач в соответствии с фильтром
@@ -76,7 +73,8 @@ const App = () => {
 
   // Проверка токена и авторизация пользователя
   useEffect(() => {
-    if (localStorage.getItem('jwt')) { setIsLoggedIn(true) }
+    if (localStorage.getItem('jwt')) { dispatch(logIn({ status: true })) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -86,8 +84,8 @@ const App = () => {
       api.loginUser(username, password)
         .then(data => {
           if (data.message.token) {
-            setIsLoggedIn(true);
             localStorage.setItem('jwt', data.message.token);
+            dispatch(logIn({ status: true }));
             closePopup();
             resolve();
           } else console.log(data.message);
@@ -103,7 +101,7 @@ const App = () => {
   // Выход из аккаунта
   const handleLogout = () => {
     localStorage.removeItem('jwt');
-    setIsLoggedIn(false);
+    dispatch(logIn({ status: false }));
   }
 
 
@@ -124,11 +122,8 @@ const App = () => {
     <>
       <div className='mx-auto app'>
         <AppHeader
-          /*numberTasks={numberTasks}
-          numberCompletedTasks={numberCompletedTasks}*/
           onOpenLoginForm={handleOpenLoginForm}
-          isLoggedIn={isLoggedIn}
-        /*onLogout={handleLogout}*/
+          onLogout={handleLogout}
         />
         <div className='d-flex'>
           <TaskStatusFilter />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useEscClose from '../../hooks/useEscClose';
-import './loginPopup.css'
+import './login-popup.css'
 
 function LoginPopup(
   {
