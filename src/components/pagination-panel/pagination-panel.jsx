@@ -6,6 +6,8 @@ import './pagination-panel.css';
 
 const PaginationPanel = ({ pageCount, currentPage }) => {
 
+  pageCount = Math.ceil(pageCount);
+
   const dispatch = useDispatch();
 
   const handleChangePage = (data) => {

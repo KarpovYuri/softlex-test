@@ -1,71 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AppHeader from '../app-header/app-header.jsx';
 import PaginationPanel from '../pagination-panel/pagination-panel.jsx'
 import TaskStatusFilter from '../task-status-filter/task-status-filter.jsx';
 import TaskList from '../task-list/task-list.jsx';
 import TaskAddForm from '../task-add-form/task-add-form.jsx';
-import LoginPopup from '../loginPopup/loginPopup.jsx';
+import LoginPopup from '../login-popup/login-popup.jsx';
 import api from '../../utils/api';
+import { logIn } from '../../actions/actionCreator'
 import './app.css';
 
 
 const App = () => {
 
-  // Начальные значения для пагинации
-  const perPage = 3;
-  const curentPage = useSelector(state => state.showPage).activePage;
-  const startTask = curentPage * perPage;
-
-
-  const filters = useSelector(state => state.filters);
-  const tasks = [...useSelector(state => state.addTasks)].reverse();
-  const numberTasks = tasks.length;
-  const numberCompletedTasks = tasks.filter(task => {
-    if (task.status === 10 || task.status === 11) return task
-  }).length;
-
-
-  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState('');
-
-
+  const [isSort, setIsSort] = useState({ sort_field: 'id', sort_direction: 'asc' });
   const [isTasks, setIsTasks] = useState([]);
+  const [isPageCount, setIsPageCount] = useState([]);
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+  const curentPage = useSelector(state => state.showPage).activePage;
+  const filters = useSelector(state => state.filters);
+  const dispatch = useDispatch();
 
 
   // Получение задач с сервера
-  // api.getInitialTasks()
-  //   .then(initialTasks => {
-  //     setIsTasks(initialTasks.message.tasks);
-  //   })
-  //   .catch(error => console.log(error));
-
+  useEffect(() => {
+    api.getInitialTasks(curentPage, isSort)
+      .then(Tasks => {
+        setIsPageCount(Tasks.message.total_task_count / 3);
+        setIsTasks(Tasks.message.tasks);
+      })
+      .catch(error => console.log(error));
+  }, [curentPage, isSort]);
 
 
   // Обработка задач в соответствии с фильтром
-  function filterTasks(tasks, { activeFilter, filterValue }) {
-    switch (activeFilter) {
-      case 'completed':
-        return tasks.filter(task => {
-          if (task.status === 10 && task.status !== 11) return task
-        });
-      case 'active':
-        return tasks.filter(task => {
-          if (task.status !== 10 && task.status !== 11) return task
-        });
-      case 'name':
-        return tasks.filter(task => task.username === filterValue);
-      case 'email':
-        return tasks.filter(task => task.email === filterValue);
+  useEffect(() => {
+    switch (filters.activeFilter) {
+      case 'nameAsc':
+        setIsSort({ sort_field: 'username', sort_direction: 'asc' });
+        break;
+      case 'nameDesc':
+        setIsSort({ sort_field: 'username', sort_direction: 'desc' });
+        break;
+      case 'emailAsc':
+        setIsSort({ sort_field: 'email', sort_direction: 'asc' });
+        break;
+      case 'emailDesc':
+        setIsSort({ sort_field: 'email', sort_direction: 'desc' });
+        break;
+      case 'statusAsc':
+        setIsSort({ sort_field: 'status', sort_direction: 'asc' });
+        break;
+      case 'statusDesc':
+        setIsSort({ sort_field: 'status', sort_direction: 'desc' });
+        break;
       default:
-        return tasks;
+        setIsSort({ sort_field: 'id', sort_direction: 'asc' });
     }
-  }
-
-  // Получаем задачи и подготавливаем к отрисовке
-  const filteredTasks = filterTasks(tasks, filters);
-  const displayedTasks = filteredTasks.slice(startTask, startTask + perPage);
-  const pageCount = Math.ceil(filteredTasks.length / perPage);
+  }, [filters]);
 
 
   // Открытие модалки
@@ -83,7 +75,8 @@ const App = () => {
 
   // Проверка токена и авторизация пользователя
   useEffect(() => {
-    if (localStorage.getItem('jwt')) { setIsLoggedIn(true) }
+    if (localStorage.getItem('jwt')) { dispatch(logIn({ status: true })) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -93,8 +86,8 @@ const App = () => {
       api.loginUser(username, password)
         .then(data => {
           if (data.message.token) {
-            setIsLoggedIn(true);
             localStorage.setItem('jwt', data.message.token);
+            dispatch(logIn({ status: true }));
             closePopup();
             resolve();
           } else console.log(data.message);
@@ -110,7 +103,7 @@ const App = () => {
   // Выход из аккаунта
   const handleLogout = () => {
     localStorage.removeItem('jwt');
-    setIsLoggedIn(false);
+    dispatch(logIn({ status: false }));
   }
 
 
@@ -131,19 +124,16 @@ const App = () => {
     <>
       <div className='mx-auto app'>
         <AppHeader
-          numberTasks={numberTasks}
-          numberCompletedTasks={numberCompletedTasks}
           onOpenLoginForm={handleOpenLoginForm}
-          isLoggedIn={isLoggedIn}
           onLogout={handleLogout}
         />
         <div className='d-flex'>
           <TaskStatusFilter />
         </div>
         <TaskAddForm /*onAddTask={handleAddTask}*/ />
-        <TaskList tasks={displayedTasks} />
+        <TaskList tasks={isTasks} />
         <PaginationPanel
-          pageCount={pageCount}
+          pageCount={isPageCount}
           currentPage={curentPage} />
       </div>
       <LoginPopup

@@ -1,13 +1,14 @@
 import React from 'react';
-import './taskListItem.css';
+//import { useSelector } from "react-redux";
+import './task-list-item.css';
 
 const TaskListItem = ({ text, username, email, status }) => {
 
+  //const isLogdIn = useSelector(state => state.logIn).status;
+
   return (
     <div className='row d-flex align-items-center'>
-      <span className='text-hidden col-12 col-md-5'>
-        {text}
-      </span>
+      <span className='text-hidden col-12 col-md-5'>{text}</span>
       <span className='text-hidden col-6 col-sm-5 col-md-3 mt-2 mt-sm-0'>{username}</span>
       <span className='text-hidden col-6 col-sm-5 col-md-3 mt-2 mt-sm-0'>{email}</span>
       <small className={`text-hidden offset-9 col-3 offset-sm-0 col-sm-2 col-md-1 mt-3 mt-sm-0 px-2 py-1
