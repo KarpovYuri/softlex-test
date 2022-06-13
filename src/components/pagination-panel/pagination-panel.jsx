@@ -32,7 +32,7 @@ const PaginationPanel = ({ pageCount, currentPage }) => {
         nextClassName="page-item"
         nextLinkClassName="page-link text-secondary shadow-none"
         activeClassName="active"
-      /*forcePage={currentPage}*/
+        forcePage={currentPage}
       />
     </nav>
   )

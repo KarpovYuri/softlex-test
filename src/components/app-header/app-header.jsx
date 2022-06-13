@@ -14,7 +14,7 @@ const AppHeader = ({ onOpenLoginForm, onLogout }) => {
         className='text-decoration-none fw-bold text-dark hover'
         onClick={isLogdIn ? onLogout : onOpenLoginForm}
       >
-        {isLogdIn ? 'logout' : 'login'}
+        {isLogdIn ? 'Logout' : 'Login'}
       </a>
     </div>
   )

@@ -1,15 +1,31 @@
 export const FILTERS_BTN = [
   {
-    text: 'All',
-    activeFilter: 'all',
+    text: 'Default',
+    activeFilter: 'default',
   },
   {
-    text: 'Active',
-    activeFilter: 'active',
+    text: 'Name Asc',
+    activeFilter: 'nameAsc',
   },
   {
-    text: 'Completed',
-    activeFilter: 'completed'
+    text: 'Name Desc',
+    activeFilter: 'nameDesc',
+  },
+  {
+    text: 'E-mail Asc',
+    activeFilter: 'emailAsc'
+  },
+  {
+    text: 'E-mail Desc',
+    activeFilter: 'emailDesc'
+  },
+  {
+    text: 'Status Asc',
+    activeFilter: 'statusAsc'
+  },
+  {
+    text: 'Status Desc',
+    activeFilter: 'statusDesc'
   }
 ];
 

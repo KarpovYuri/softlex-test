@@ -17,8 +17,8 @@ class Api {
 
 
   // Получение задач с сервера
-  getInitialTasks(page) {
-    return fetch(`${this._baseUrl}/?developer=Example&page=${page + 1}`, {
+  getInitialTasks(page, { sort_field, sort_direction }) {
+    return fetch(`${this._baseUrl}/?developer=Example&page=${page + 1}&sort_field=${sort_field}&sort_direction=${sort_direction}`, {
       method: 'GET'
     })
       .then(res => this._handlingResponse(res));

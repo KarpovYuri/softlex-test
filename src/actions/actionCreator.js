@@ -9,10 +9,9 @@ export const addTask = ({ id, text, username, email, status }) => ({
   status
 });
 
-export const changeFilter = ({ activeFilter, filterValue }) => ({
+export const changeFilter = ({ activeFilter }) => ({
   type: CHANGE_FILTER,
-  activeFilter,
-  filterValue
+  activeFilter
 });
 
 export const showPage = ({ activePage }) => ({

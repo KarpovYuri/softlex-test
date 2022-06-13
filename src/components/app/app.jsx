@@ -13,49 +13,51 @@ import './app.css';
 
 const App = () => {
 
+  const [isSort, setIsSort] = useState({ sort_field: 'id', sort_direction: 'asc' });
   const [isTasks, setIsTasks] = useState([]);
   const [isPageCount, setIsPageCount] = useState([]);
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const curentPage = useSelector(state => state.showPage).activePage;
+  const filters = useSelector(state => state.filters);
   const dispatch = useDispatch();
 
 
   // Получение задач с сервера
   useEffect(() => {
-    api.getInitialTasks(curentPage)
+    api.getInitialTasks(curentPage, isSort)
       .then(Tasks => {
         setIsPageCount(Tasks.message.total_task_count / 3);
         setIsTasks(Tasks.message.tasks);
       })
       .catch(error => console.log(error));
-  }, [curentPage]);
-
-
-
-  //const filters = useSelector(state => state.filters);
-  //const tasks = [...useSelector(state => state.addTasks)].reverse();
+  }, [curentPage, isSort]);
 
 
   // Обработка задач в соответствии с фильтром
-  // function filterTasks(tasks, { activeFilter, filterValue }) {
-  //   switch (activeFilter) {
-  //     case 'completed':
-  //       return tasks.filter(task => {
-  //         if (task.status === 10 && task.status !== 11) return task
-  //       });
-  //     case 'active':
-  //       return tasks.filter(task => {
-  //         if (task.status !== 10 && task.status !== 11) return task
-  //       });
-  //     case 'name':
-  //       return tasks.filter(task => task.username === filterValue);
-  //     case 'email':
-  //       return tasks.filter(task => task.email === filterValue);
-  //     default:
-  //       return tasks;
-  //   }
-  // }
-
+  useEffect(() => {
+    switch (filters.activeFilter) {
+      case 'nameAsc':
+        setIsSort({ sort_field: 'username', sort_direction: 'asc' });
+        break;
+      case 'nameDesc':
+        setIsSort({ sort_field: 'username', sort_direction: 'desc' });
+        break;
+      case 'emailAsc':
+        setIsSort({ sort_field: 'email', sort_direction: 'asc' });
+        break;
+      case 'emailDesc':
+        setIsSort({ sort_field: 'email', sort_direction: 'desc' });
+        break;
+      case 'statusAsc':
+        setIsSort({ sort_field: 'status', sort_direction: 'asc' });
+        break;
+      case 'statusDesc':
+        setIsSort({ sort_field: 'status', sort_direction: 'desc' });
+        break;
+      default:
+        setIsSort({ sort_field: 'id', sort_direction: 'asc' });
+    }
+  }, [filters]);
 
 
   // Открытие модалки
