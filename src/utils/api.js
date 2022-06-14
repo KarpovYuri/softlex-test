@@ -57,13 +57,14 @@ class Api {
 
 
   // Редактирование задачи на сервере
-  editTask() {
+  editTask({ id, text, status }) {
 
     let form = new FormData();
-    form.append('id', '497');
     form.append('token', localStorage.getItem('jwt'));
+    form.append('text', text);
+    form.append('status', status);
 
-    return fetch(`${this._baseUrl}/edit/?developer=Example`, {
+    return fetch(`${this._baseUrl}/edit/${id}:id/?developer=Example`, {
       method: 'POST',
       body: form
     })
