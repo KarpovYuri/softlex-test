@@ -7,7 +7,7 @@ import TaskList from '../task-list/task-list.jsx';
 import TaskAddForm from '../task-add-form/task-add-form.jsx';
 import LoginPopup from '../login-popup/login-popup.jsx';
 import api from '../../utils/api';
-import { logIn } from '../../actions/actionCreator'
+import { logIn, showPage } from '../../actions/actionCreator'
 import './app.css';
 
 
@@ -77,8 +77,6 @@ const App = () => {
   useEffect(() => {
     const currentDate = Date.parse(new Date) / 1000;
     const tokenDate = Date.parse(localStorage.getItem('time')) / 1000;
-    console.log(currentDate - tokenDate);
-
     if ((currentDate - tokenDate) <= 86400) { dispatch(logIn({ status: true })) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -115,7 +113,10 @@ const App = () => {
   // Добавление задачи на сервер
   function handleAddTask(data) {
     api.loginUser(data)
-      .then(data => console.log(data))
+      .then(data => {
+        dispatch(showPage({ activePage: Math.ceil(isPageCount - 1) }));
+        console.log(data);
+      })
       .catch(error => console.log(error))
   }
 
