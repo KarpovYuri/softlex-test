@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addTask, changeFilter } from '../../actions/actionCreator';
+import { showPage, changeFilter } from '../../actions/actionCreator';
 import './task-add-form.css';
 
 
@@ -29,22 +29,13 @@ const TaskAddForm = ({ onAddTask }) => {
 
   const handleTaskSubmit = (evt) => {
     evt.preventDefault();
-    // onAddTask({
-    //   text: isTaskText,
-    //   username: isUserName,
-    //   email: isUserEmail
-    // })
-    // dispatch(addTask({
-    //   id: (new Date()).getTime(),
-    //   text: isTaskText,
-    //   username: isUserName,
-    //   email: isUserEmail,
-    //   status: 0
-    // }));
-    dispatch(changeFilter({
-      id: 'all',
-      filterValue: ''
-    }));
+    onAddTask({
+      text: isTaskText,
+      username: isUserName,
+      email: isUserEmail
+    })
+    dispatch(changeFilter({ activeFilter: 'default' }));
+    dispatch(showPage({ activePage: 0 }));
     setIsTaskText('');
     setIsUserName('');
     setIsUserEmail('');

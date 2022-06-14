@@ -1,8 +1,7 @@
 import { ADD_TASK, CHANGE_FILTER, SHOW_PAGE, LOG_IN } from "../utils/constants";
 
-export const addTask = ({ id, text, username, email, status }) => ({
+export const addTask = ({ text, username, email, status }) => ({
   type: ADD_TASK,
-  id,
   text,
   username,
   email,

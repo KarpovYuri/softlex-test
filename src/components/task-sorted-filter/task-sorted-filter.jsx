@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { changeFilter, showPage } from '../../actions/actionCreator';
 import { FILTERS_BTN } from '../../utils/constants'
-import './task-status-filter.css';
+import './task-sorted-filter.css';
 
-const TaskStatusFilter = () => {
+const TaskSortedFilter = () => {
 
 
   const dispatch = useDispatch();
@@ -27,4 +27,4 @@ const TaskStatusFilter = () => {
   )
 }
 
-export default TaskStatusFilter;
+export default TaskSortedFilter;

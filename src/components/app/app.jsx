@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import AppHeader from '../app-header/app-header.jsx';
 import PaginationPanel from '../pagination-panel/pagination-panel.jsx'
-import TaskStatusFilter from '../task-status-filter/task-status-filter.jsx';
+import TaskSortedFilter from '../task-sorted-filter/task-sorted-filter.jsx';
 import TaskList from '../task-list/task-list.jsx';
 import TaskAddForm from '../task-add-form/task-add-form.jsx';
 import LoginPopup from '../login-popup/login-popup.jsx';
@@ -108,16 +108,18 @@ const App = () => {
 
 
   // Добавление задачи на сервер
-  // function handleAddTask(data) {
-  //   api.loginUser(data)
-  //     .then(data => console.log(data))
-  //     .catch(error => console.log(error))
-  // }
+  function handleAddTask(data) {
+    api.loginUser(data)
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+  }
 
   //Редактирование задачи на сервере
-  // api.editTask()
-  //   .then(data => console.log(data))
-  //   .catch(error => console.log(error))
+  function handleEditTask(data) {
+    api.editTask(data)
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+  }
 
 
   return (
@@ -128,10 +130,12 @@ const App = () => {
           onLogout={handleLogout}
         />
         <div className='d-flex'>
-          <TaskStatusFilter />
+          <TaskSortedFilter />
         </div>
-        <TaskAddForm /*onAddTask={handleAddTask}*/ />
-        <TaskList tasks={isTasks} />
+        <TaskAddForm onAddTask={handleAddTask} />
+        <TaskList
+          tasks={isTasks}
+          onEditTask={handleEditTask} />
         <PaginationPanel
           pageCount={isPageCount}
           currentPage={curentPage} />
