@@ -24,7 +24,7 @@ const PaginationPanel = ({ pageCount, currentPage }) => {
         breakLinkClassName="page-link text-secondary shadow-none"
         pageCount={pageCount}
         onPageChange={handleChangePage}
-        containerClassName="pagination justify-content-center mt-4"
+        containerClassName="pagination pagination-sm justify-content-center mt-4"
         pageClassName="page-item"
         pageLinkClassName="page-link text-secondary shadow-none"
         previousClassName="page-item"

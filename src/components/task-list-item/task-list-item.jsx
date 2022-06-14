@@ -61,12 +61,12 @@ const TaskListItem = ({ id, text, username, email, status, onEditTask }) => {
         <input
           value={isText || ''}
           onChange={handleChangeText}
-          className={`input text-hidden ${isLogdIn ? '' : 'border-none'}`}
+          className={`input text-hidden  mt-1 mb-1 ${isLogdIn ? '' : 'border-none'}`}
           disabled={isLogdIn ? '' : 'disabled'}
         ></input>
         <button
           onClick={() => { handleEditText(isText) }}
-          className={`btn btn-outline-secondary shadow-none ms-2 ${isLogdIn ? '' : 'hide'}`}
+          className={`btn btn-outline-secondary shadow-none ms-sm-2  mt-1 mb-1 ${isLogdIn ? '' : 'hide'}`}
         >
           Save
         </button>
