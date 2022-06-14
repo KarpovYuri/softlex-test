@@ -59,6 +59,7 @@ class Api {
   // Редактирование задачи на сервере
   editTask({ id, text, status }) {
 
+
     let form = new FormData();
     form.append('token', localStorage.getItem('jwt'));
     form.append('text', text);
