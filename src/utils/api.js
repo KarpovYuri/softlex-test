@@ -18,7 +18,7 @@ class Api {
 
   // Получение задач с сервера
   getInitialTasks(page, { sort_field, sort_direction }) {
-    return fetch(`${this._baseUrl}/?developer=Example&page=${page + 1}&sort_field=${sort_field}&sort_direction=${sort_direction}`, {
+    return fetch(`${this._baseUrl}/?developer=Name&page=${page + 1}&sort_field=${sort_field}&sort_direction=${sort_direction}`, {
       method: 'GET'
     })
       .then(res => this._handlingResponse(res));
@@ -32,7 +32,7 @@ class Api {
     form.append('username', username);
     form.append('password', password);
 
-    return fetch(`${this._baseUrl}/login/?developer=Example`, {
+    return fetch(`${this._baseUrl}/login/?developer=Name`, {
       method: 'POST',
       body: form
     })
@@ -48,7 +48,7 @@ class Api {
     form.append('email', email);
     form.append('text', text);
 
-    return fetch(`${this._baseUrl}/create/?developer=Example`, {
+    return fetch(`${this._baseUrl}/create/?developer=Name`, {
       method: 'POST',
       body: form
     })
@@ -65,7 +65,7 @@ class Api {
     form.append('text', text);
     form.append('status', status);
 
-    return fetch(`${this._baseUrl}/edit/${id}:id/?developer=Example`, {
+    return fetch(`${this._baseUrl}/edit/${id}:id/?developer=Name`, {
       method: 'POST',
       body: form
     })
