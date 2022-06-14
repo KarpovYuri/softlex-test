@@ -15,12 +15,12 @@ const TaskSortedFilter = () => {
 
 
   return (
-    <div className='w-100 d-flex justify-content-center btn-group  mt-2 mt-md-0'>
+    <div className='w-100 d-flex flex-wrap justify-content-center mt-2 mt-md-0'>
       {FILTERS_BTN.map(({ text, activeFilter }) => (
         <button
           onClick={() => { handleChangeFilter({ activeFilter }) }}
           key={activeFilter}
-          className='btn btn-outline-secondary shadow-none'
+          className='btn btn-outline-secondary shadow-none me-2 mt-2'
         >{text}</button>
       ))}
     </div>

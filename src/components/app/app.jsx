@@ -75,7 +75,11 @@ const App = () => {
 
   // Проверка токена и авторизация пользователя
   useEffect(() => {
-    if (localStorage.getItem('jwt')) { dispatch(logIn({ status: true })) }
+    const currentDate = Date.parse(new Date) / 1000;
+    const tokenDate = Date.parse(localStorage.getItem('time')) / 1000;
+    console.log(currentDate - tokenDate);
+
+    if ((currentDate - tokenDate) <= 86400) { dispatch(logIn({ status: true })) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -86,6 +90,7 @@ const App = () => {
       api.loginUser(username, password)
         .then(data => {
           if (data.message.token) {
+            localStorage.setItem('time', new Date());
             localStorage.setItem('jwt', data.message.token);
             dispatch(logIn({ status: true }));
             closePopup();
